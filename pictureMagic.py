@@ -14,13 +14,13 @@ app.config.from_object(__name__) # from_object, weil keine separate Konfigdatei
 def homepage():
 	try:
 		if request.method == 'POST':
-			flash("File(s) should have been uploaded now.")
+			#flash("File(s) should have been uploaded now.")
 			f = request.files['file']
 			if (f):
-				flash('arrived at f.save()')
+				#flash('arrived at f.save()')
 				f.save('/static/uploads/' + secure_filename(f.filename))
-			else:
-				flash("GET")
+			#else:
+				#flash("GET")
 	except Exception as e:
 		flash(e)
 
