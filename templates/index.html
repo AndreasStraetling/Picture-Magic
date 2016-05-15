@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Picture Magic</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Picture Magic</h1>
+      <h2>Doing exciting stuff with pictures since 05/2016</h2>
+
+	  <div class=flash>
+		  {% with messages = get_flashed_messages() %}
+			{% if messages %}
+			  <ul class=flashes>
+			    {% for message in messages %}
+			      <li>{{ message }}</li>
+			    {% endfor %}
+			  </ul>
+			{% endif %}
+		  {% endwith %}
+	  </div>
+	  
+	  <div id="filelist-headline">
+		<!-- this is filled by javascript ("Your files")-->
+	  </div>
+	  <div id="filelist">
+	    Your browser doesn't have Flash, Silverlight or HTML5 support.
+	  </div>
+	  
+	  <div id="pictureShow">
+		{% block pictures %}
+		<img alt="testbild" height="40" width="40" src="../static/img/testbild.png"><br />
+		<!--
+		<img alt="testbild_klein" height="40" width="40" src="../static/img/testbild_53x40.png"><br />
+		-->
+		{% endblock %}
+	  </div>
+      
+      <div id="controls">
+		<button id="browse" href="javascript:;" class="btn-primary">Select files</button> 
+        <button id="start-upload" href="javascript:;" class="btn-default">Start Upload</button>
+		<!-- play button is added dynamically by javascript -->
+	  </div>
+	  
+	  <h3>Our lovely Console</h3>
+	  <pre id="console"></pre> <!-- used to display error messages -->
+    </div>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+	
+	<!--  CSS Importe -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="crossorigin="anonymous">
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+	
+	<!-- JS Importe -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="../static/plupload218/js/plupload.full.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='upload.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='movePics.js') }}"></script>
+		
+  </body>
+</html>
