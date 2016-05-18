@@ -8,7 +8,7 @@ $(function() {
 		
 		// url of a server-side handler, that will accept the files, do some security checks on them and finally move them to a destination folder. 
 		// in this case: POST-Request to the main-page
-		url : "/",
+		url : "/", // Python-Main-Script SHOULD handle this.
 		
 		filters : {
 			max_file_size : '10mb',
