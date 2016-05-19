@@ -29,7 +29,7 @@ def homepage():
 
 	flash("hinter except")
 	return render_template('index.html')
-		
+	
 # Bei Ausfuehrung dieses Skripts: Server starten:
 if __name__ == '__main__':
     # lokal (zum Testen):
