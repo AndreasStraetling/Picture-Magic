@@ -1,5 +1,6 @@
 from flask import Flask, request, url_for, render_template, flash, send_from_directory
 from werkzeug import secure_filename
+import pdb
 
 # configuration (hier nicht in separater Konfigdatei, weil sehr klein)
 DEBUG = True   #in Produktionsphase immer auf False belassen!
@@ -15,16 +16,19 @@ def homepage():
 	try:
 		if request.method == 'POST':
 			flash("POST")
+			pdb.set_trace()
 			f = request.files['file']
 			if (f):
-				flash('(POST)-file exists')
+				flash('(POST)-file exists (should be uploaded now)')
 				f.save('/static/uploads/' + secure_filename(f.filename))
 		else:
 			flash("GET")
+			
 	except Exception as e:
 		flash ("except")
 		flash(e)
-
+	
+	pdb.set_trace()	
 	flash("rendering template...")
 	return render_template('index.html')
 
