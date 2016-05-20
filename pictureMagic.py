@@ -12,22 +12,20 @@ app.config.from_object(__name__) # from_object, weil keine separate Konfigdatei
 # view
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
-	flash("request.method: "+request.method)
-
 	try:
 		if request.method == 'POST':
-			flash("try-if(POST)")
+			flash("POST")
 			f = request.files['file']
 			if (f):
-				flash('try-if(POST)-if(file)')
+				flash('(POST)-file exists')
 				f.save('/static/uploads/' + secure_filename(f.filename))
 		else:
-			flash("try-else")
+			flash("GET")
 	except Exception as e:
 		flash ("except")
 		flash(e)
 
-	flash("hinter except")
+	flash("rendering template...")
 	return render_template('index.html')
 	
 # Bei Ausfuehrung dieses Skripts: Server starten:
