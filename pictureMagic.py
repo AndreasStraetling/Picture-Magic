@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Flask, request, url_for, render_template, flash, send_from_directory
 from werkzeug import secure_filename
 import pdb
@@ -16,20 +17,19 @@ def homepage():
 	try:
 		if request.method == 'POST':
 			flash("POST")
-			pdb.set_trace()
 			f = request.files['file']
 			if (f):
-				flash('(POST)-file exists (should be uploaded now)')
-				f.save('/static/uploads/' + secure_filename(f.filename))
+				filename = secure_filename(f.filename)
+				speicherort =  'static/uploads/'+filename
+				pdb.set_trace()
+				f.save(speicherort)
 		else:
 			flash("GET")
 			
 	except Exception as e:
-		flash ("except")
 		flash(e)
 	
-	pdb.set_trace()	
-	flash("rendering template...")
+	flash("rendering template: request.method:"+request.method)
 	return render_template('index.html')
 
 # Bei Ausfuehrung dieses Skripts: Server starten:
