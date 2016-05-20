@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, render_template, flash, session, g, send_from_directory
+from flask import Flask, request, url_for, render_template, flash, send_from_directory
 from werkzeug import secure_filename
 
 # configuration (hier nicht in separater Konfigdatei, weil sehr klein)
@@ -27,7 +27,7 @@ def homepage():
 
 	flash("rendering template...")
 	return render_template('index.html')
-	
+
 # Bei Ausfuehrung dieses Skripts: Server starten:
 if __name__ == '__main__':
     # lokal (zum Testen):
