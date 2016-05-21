@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block pictures %}
+  {% if filename %}
+    <!--<img alt="{{ filename }}" height="40" width="40" src="../static/uploads/{{ filename }}"><br />-->
+	<p>filename - image</p>
+  {% endif %}
+  {% if imgList %}
+	{% for img in imgList %}
+	  <p>imgList - image</p>
+	{% endfor %}
+  {% endif %}
+  <p>showme imgList: {{ imgList }}</p>
+  <p>showme filename: {{ filename }}</p>
+{% endblock %}

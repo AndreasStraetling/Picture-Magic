@@ -57,7 +57,7 @@ $(function() {
 				document.getElementById('filelist').classList.add('dash-me');
 				plupload.each(files, function(file) {
 					document.getElementById('filelist').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
-					document.getElementById('pictureShow').innerHTML += '<img height="40" width="40" ' + 'alt="bild'+file.name+'" ' + 'src="{{ url_for('+"'static', filename='uploads/" +file.id+") }}" + '><br />';
+					//document.getElementById('pictureShow').innerHTML += '<img height="40" width="40" ' + 'alt="bild'+file.name+'" ' + 'src="{{ url_for('+"'static', filename='uploads/" +file.id+") }}" + '><br />';
 				});
 			},
 	 

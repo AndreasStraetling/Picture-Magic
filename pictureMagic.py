@@ -14,6 +14,8 @@ app.config.from_object(__name__) # from_object, weil keine separate Konfigdatei
 # view
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
+	imgList = {}
+	counter = 0
 	try:
 		if request.method == 'POST':
 			flash("POST")
@@ -21,17 +23,26 @@ def homepage():
 			if (f):
 				filename = secure_filename(f.filename)
 				speicherort =  'static/uploads/'+filename
-				pdb.set_trace()
 				f.save(speicherort)
-		else:
+				imgList[counter] = filename
+				counter += 1
+				pdb.set_trace()
+				return render_template('done.html', filename=filename, imgList=imgList)
+		else: #GET
+			pdb.set_trace()
 			flash("GET")
+			return render_template('index.html')
 			
 	except Exception as e:
+		pdb.set_trace()
 		flash(e)
-	
-	flash("rendering template: request.method:"+request.method)
-	return render_template('index.html')
+		return render_template('index.html')
 
+# einzelnes Bild anzeigen lassen
+@app.route('/<filename>', methods=['GET'])
+def files(filename):
+	return send_from_directory('static/uploads/', filename)	
+	
 # Bei Ausfuehrung dieses Skripts: Server starten:
 if __name__ == '__main__':
     # lokal (zum Testen):
