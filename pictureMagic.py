@@ -27,7 +27,7 @@ def homepage():
 				imgList[counter] = filename
 				counter += 1
 				pdb.set_trace()
-				return render_template('done.html', filename=filename, imgList=imgList)
+				return render_template('index.html', filename=filename, imgList=imgList)
 		else: #GET
 			pdb.set_trace()
 			flash("GET")
