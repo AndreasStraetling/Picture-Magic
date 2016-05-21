@@ -7,12 +7,14 @@ Picture-Magic in a nutshell:
 
 
 Latest Updates:
+ - Identified the problem with the page not showing the uploaded picture: The Browser just does not render the template a 2nd time with the given parameters (which are transmitted correctly by the server).
  - File upload finally works now!
  - Replaced a "for-of"-loop in Javascript which caused problems in some old browsers with something better.
 
 
 To Do:
- - Make the site actually display the uploaded file.
+ - Make the site actually display the uploaded file, which means the Browser needs to render the index.html a second time.
+
 
 
 Compatibility:

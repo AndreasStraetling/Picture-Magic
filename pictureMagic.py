@@ -12,6 +12,7 @@ app = Flask(__name__)
 app.config.from_object(__name__) # from_object, weil keine separate Konfigdatei
 
 # view
+@app.route('/index.html', methods=['GET', 'POST'])
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
 	imgList = {}
@@ -28,11 +29,12 @@ def homepage():
 				counter += 1
 				pdb.set_trace()
 				return render_template('index.html', filename=filename, imgList=imgList)
+				
 		else: #GET
 			pdb.set_trace()
 			flash("GET")
 			return render_template('index.html')
-			
+
 	except Exception as e:
 		pdb.set_trace()
 		flash(e)
