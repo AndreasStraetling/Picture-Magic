@@ -15,3 +15,6 @@ Latest Updates:
 
 Compatibility:
  - This site should now work in all browsers. If it does not, feel free to message me.
+ 
+ Notice:
+ Don't get confused because some stuff is still labeled with "BETA". That's not correct anymore.
