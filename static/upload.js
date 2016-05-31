@@ -7,8 +7,8 @@ $(function() {
 		container: document.getElementById('controls'), // ... or DOM Element itself
 		
 		// url of a server-side handler, that will accept the files, do some security checks on them and finally move them to a destination folder. 
-		// in this case: POST-Request to the main-page
-		url : "/", // Python-Main-Script SHOULD handle this.
+		// in this case: POST-Request
+		url : "/up", // Python-Main-Script will handle this.
 		
 		filters : {
 			max_file_size : '10mb',
