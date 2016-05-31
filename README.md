@@ -1,21 +1,17 @@
 # Picture-Magic
 
 Picture-Magic in a nutshell:
- - Select a file, 
+ - Select a file (or multiple files), 
  - upload it, 
- - then click the "magical" button to see magic happening :)
-
-
+ - see magic happening :)
+ - Warning: Use filenames which don't contain spaces or braces.
+ 
 Latest Updates:
- - Identified the problem with the page not showing the uploaded picture: The Browser just does not render the template a 2nd time with the given parameters (which are transmitted correctly by the server).
+ - Project finished for now.
+ - Uploading multiple pictures now works. Be careful with the filenames though.
+ - Displaying uploaded files finally works now.
  - File upload finally works now!
- - Replaced a "for-of"-loop in Javascript which caused problems in some old browsers with something better.
-
-
-To Do:
- - Make the site actually display the uploaded file, which means the Browser needs to render the index.html a second time.
-
-
+ - Replaced a "for-of"-loop in Javascript with something better because it caused problems in some old browsers.
 
 Compatibility:
  - This site should now work in all browsers. If it does not, feel free to message me.

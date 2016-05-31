@@ -23,27 +23,14 @@
 	  </div>
 	  
 	  <div id="filelist-headline">
-		<!-- this is filled by javascript ("Your files")-->
+		<!-- this is filled by javascript as soon as files are selected ("Your files")-->
 	  </div>
 	  <div id="filelist">
 	    Your browser doesn't have Flash, Silverlight or HTML5 support.
 	  </div>
 	  
 	  <div id="pictureShow">
-		<img alt="testbild" height="40" width="40" src="../static/img/testbild_53x40.png"><br />
-		<img alt="testbild" height="40" width="40" src="../static/img/FuBK_testcard_vectorized.svg.png"><br />
-		{% block pictures %}
-		  {% if filename: %}
-			<!--<img alt="{{ filename }}" height="40" width="40" src="../static/uploads/{{ filename }}"><br />-->
-			<p>{{ filename }}</p>
-		  {% endif %}
-		  
-		  {% if imgList: %}
-			{% for img in imgList %}
-			  <p>{{ img }}</p>
-			{% endfor %}
-		  {% endif %}
-		{% endblock %}
+	    <!-- this is filled by javascript as soon as files are uploaded. (shows the actual images)-->
 	  </div>
       
       <div id="controls">
@@ -53,7 +40,7 @@
 	  </div>
 	  
 	  <h3>Our lovely Console</h3>
-	  <pre id="console"></pre> <!-- used to display error messages -->
+	  <pre id="console"></pre> <!-- used to display error messages, e.g. HTML errors -->
     </div>
 
 	<!-- Favicon -->

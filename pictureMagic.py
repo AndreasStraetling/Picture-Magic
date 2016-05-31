@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request, url_for, render_template, flash, send_from_directory
 from werkzeug import secure_filename
-import pdb
 
 # configuration (hier nicht in separater Konfigdatei, weil sehr klein)
 DEBUG = True   #in Produktionsphase immer auf False belassen!
@@ -12,38 +11,28 @@ app = Flask(__name__)
 app.config.from_object(__name__) # from_object, weil keine separate Konfigdatei
 
 # view
-@app.route('/index.html', methods=['GET', 'POST'])
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/index.html', methods=['GET'])
+@app.route('/', methods=['GET'])
 def homepage():
-	imgList = {}
-	counter = 0
+	return render_template('index.html')
+
+@app.route('/up', methods=['GET', 'POST'])
+def up(): # handle file uploads
 	try:
-		if request.method == 'POST':
-			flash("POST")
+		if request.method=='POST':  # this is executed for EVERY picture the user uploads.
 			f = request.files['file']
-			if (f):
-				filename = secure_filename(f.filename)
-				speicherort =  'static/uploads/'+filename
-				f.save(speicherort)
-				imgList[counter] = filename
-				counter += 1
-				pdb.set_trace()
-				return render_template('index.html', filename=filename, imgList=imgList)
-				
-		else: #GET
-			pdb.set_trace()
-			flash("GET")
-			return render_template('index.html')
-
+			filename = secure_filename(f.filename) # this replaces " " by "_" and removes any "(" oder ")" in the filename. (and possibly some other stuff I don't know)
+			speicherort = 'static/uploads/'+filename
+			f.save(speicherort)
 	except Exception as e:
-		pdb.set_trace()
 		flash(e)
-		return render_template('index.html')
 
-# einzelnes Bild anzeigen lassen
+	return render_template('index.html')
+
+# einzelnes Bild anzeigen lassen #fancy zusatz, nicht noetig.
 @app.route('/<filename>', methods=['GET'])
 def files(filename):
-	return send_from_directory('static/uploads/', filename)	
+	return send_from_directory('static/uploads/', filename)
 	
 # Bei Ausfuehrung dieses Skripts: Server starten:
 if __name__ == '__main__':

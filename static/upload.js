@@ -1,14 +1,14 @@
 // source code (GPLv2) : http://www.plupload.com/examples/core  (hier für privaten Zweck modifiziert)
 
 $(function() {
+	document.getElementById('console').innerHTML += "WARNING: Uploading files with Spaces, Braces etc. \n         in the filename doesn't work!";
 	var uploader = new plupload.Uploader({
 		runtimes : 'html5,flash,silverlight,html4',
 		browse_button : 'browse', // you can pass in id...
 		container: document.getElementById('controls'), // ... or DOM Element itself
 		
 		// url of a server-side handler, that will accept the files, do some security checks on them and finally move them to a destination folder. 
-		// in this case: POST-Request
-		url : "/up", // Python-Main-Script will handle this.
+		url : "/up", // Python-Main-Script will handle this POST-Request.
 		
 		filters : {
 			max_file_size : '10mb',
@@ -18,7 +18,7 @@ $(function() {
 			]
 		},
 		
-		// Downsize auf CLIENT-Seite --> Performanz! :)
+		// Downsize auf CLIENT-Seite --> Performanz!
 		resize: {
 			width: 40,
 			height: 40
@@ -57,14 +57,24 @@ $(function() {
 				document.getElementById('filelist').classList.add('dash-me');
 				plupload.each(files, function(file) {
 					document.getElementById('filelist').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
-					//document.getElementById('pictureShow').innerHTML += '<img height="40" width="40" ' + 'alt="bild'+file.name+'" ' + 'src="{{ url_for('+"'static', filename='uploads/" +file.id+") }}" + '><br />';
 				});
 			},
 	 
 			UploadProgress: function(up, file) {
 				document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+				var pics = document.getElementById('pictureShow');
+				//debugger;
+				if (file.percent == 100 ) {
+					// file.name als Bedingung allein reicht nicht, weil "testbild.png" in "palette-testbild.png" vorkommt, und "testbild.png" als zweites Bild dann nicht mehr angezeigt wuerde.
+					if (pics.innerHTML.contains('uploads/'+file.name)) {
+						// task finished. no more need to do anything here.
+					}
+					else {
+						pics.innerHTML += '<img height="40" width="40" alt="uploadedPic" src="../static/uploads/'+file.name+'"><br />';
+					}
+				}
 			},
-	 
+
 			Error: function(up, err) {
 				document.getElementById('console').innerHTML += "Error #" + err.code + ": " + err.message + "\n";
 			}
